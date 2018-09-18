@@ -10,7 +10,6 @@ void BafIOServer::pushEvent(BafIOEvent & event)
 
 BafIOEvent BafIOServer::popEvent()
 {
-	Lock lock(eventMutex);
 	if (!clientEvents.empty())
 	{
 		BafIOEvent event = clientEvents.back();
@@ -70,8 +69,23 @@ bool BafIOServer::startNetworkThread()
 
 void BafIOServer::mainLoop()
 {
-	BafIOEvent event = this->popEvent();
-	cout << "BafIOEvent: " << "EventType: " << event.getEventType() << endl;
+	// Network thread cannot add new events while processing existing, so we lock it.
+	eventMutex.lock();
+	for (;;)
+	{
+		BafIOEvent event = this->popEvent();
+
+		// Break if the event array is empty
+		if (event.getEventType() == 0)
+			break;
+
+		// Call event handler
+		BafIOEvent::getHandler(event.getEventType())(event.getArgs());
+	}
+	eventMutex.unlock();
+
+	// Update the world
+	this->world.update();
 }
 
 void BafIOServer::networkLoop()
@@ -80,6 +94,5 @@ void BafIOServer::networkLoop()
 	{
 		BafIOEvent event(1);
 		this->pushEvent(event);
-		cout << "Adding event type" << endl;
 	}
 }

@@ -37,6 +37,9 @@ public:
 
 	// Get handler for a event type.
 	static BafIOEventHandlerFunc getHandler(EventType type);
+
+	// Return args array.
+	map<string, string> getArgs();
 };
 
 BafIOEvent getFromPacket(Packet packet);

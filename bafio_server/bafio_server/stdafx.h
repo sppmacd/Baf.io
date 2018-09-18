@@ -16,3 +16,6 @@ using namespace sf;
 #include <map>
 
 using namespace std;
+
+// C libraries
+#include <cstdlib>

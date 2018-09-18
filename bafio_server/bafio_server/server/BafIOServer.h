@@ -18,6 +18,9 @@ class BafIOServer
 
 	// Network thread object.
 	Thread networkThread;
+
+	// The World.
+	World world;
 public:
 	// Event mutex.
 	Mutex eventMutex;
