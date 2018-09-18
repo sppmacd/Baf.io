@@ -1,13 +1,15 @@
 #pragma once
 
-class Object
+class Object : public Transformable
 {
 public:
-	Vector2f position;
+	Object(World* world, string str = "undefinedObject", Uint64 id = 0);
+
 	Vector2f speed;
 	Uint64 uuid;
+	World* owner;
+	string type;
 
-	void move();
 	virtual void update();
 	virtual void onCreate();
 	virtual void onUpgrade();

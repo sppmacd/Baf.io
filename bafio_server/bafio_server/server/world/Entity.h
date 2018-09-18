@@ -2,14 +2,16 @@
 
 #include "../../stdafx.h"
 
-class Entity
+class Entity : public Transformable
 {
 public:
-	Vector2f position;
+	Entity(World* world, string str = "undefinedEntity", Uint64 id = 0);
+
 	Vector2f speed;
 	Uint64 uuid;
+	string type;
+	World* owner;
 
-	void move();
 	virtual void update();
 	virtual void onCreate();
 	virtual void onDeath();

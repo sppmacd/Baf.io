@@ -38,7 +38,7 @@ void BafIOEvent::removeArg(string name)
 }
 
 // Retrieve argument value.
-string BafIOEvent::getArg(string name)
+string& BafIOEvent::getArg(string name)
 {
 	return this->eventArgs[name];
 }
@@ -46,7 +46,30 @@ string BafIOEvent::getArg(string name)
 // Get handler for a event type.
 BafIOEventHandlerFunc BafIOEvent::getHandler(EventType type)
 {
-	return eventHandlers[type];
+	try
+	{
+		return eventHandlers[type];
+	}
+	catch(...)
+	{
+		return BafIOEvent::defaultEventHandler;
+	}
+}
+
+map<string, string> BafIOEvent::getArgs()
+{
+	return eventArgs;
+}
+
+string & BafIOEvent::operator[](string name)
+{
+	return getArg(name);
+}
+
+bool BafIOEvent::defaultEventHandler(BafIOEvent & event)
+{
+	cout << "Error: the event type '" << event.getEventType() << "' is invalid!" << endl;
+	return true;
 }
 
 // Parse event from packet.

@@ -5,13 +5,13 @@
 #include "Entity.h"
 
 // Class managing server World.
-class World
+class World : public NonCopyable
 {
 	vector<Object> objects;
 	vector<Entity> entities;
-	const Vector2f size;
 
 public:
+	const Vector2f size;
 	World();
 
 	// Add obstacles etc etc

@@ -3,7 +3,9 @@
 #include "../../../stdafx.h"
 
 // Some typedefs.
-typedef bool(*BafIOEventHandlerFunc)(map<string, string> args);
+class BafIOEvent;
+
+typedef bool(*BafIOEventHandlerFunc)(BafIOEvent&);
 typedef Uint32 EventType;
 
 class BafIOEvent
@@ -33,13 +35,19 @@ public:
 	void removeArg(string name);
 
 	// Retrieve argument value.
-	string getArg(string name);
+	string& getArg(string name);
 
 	// Get handler for a event type.
 	static BafIOEventHandlerFunc getHandler(EventType type);
 
 	// Return args array.
 	map<string, string> getArgs();
+
+	// Operator[]
+	string& operator[](string name);
+
+	// Default event handler for non-existing events.
+	static bool defaultEventHandler(BafIOEvent& event);
 };
 
 BafIOEvent getFromPacket(Packet packet);
