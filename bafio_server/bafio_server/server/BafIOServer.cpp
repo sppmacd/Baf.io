@@ -11,14 +11,22 @@ void BafIOServer::pushEvent(BafIOEvent & event)
 BafIOEvent BafIOServer::popEvent()
 {
 	Lock lock(eventMutex);
-	BafIOEvent& event = clientEvents.back();
-	clientEvents.pop_back();
-	return event;
+	if (!clientEvents.empty())
+	{
+		BafIOEvent event = clientEvents.back();
+		clientEvents.pop_back();
+		return event;
+	}
+	else
+	{
+		return BafIOEvent();
+	}
 }
 
 BafIOServer::BafIOServer()
 	: networkThread(&BafIOServer::networkLoop, this)
 {
+	cout << "Creating Server..." << endl;
 	// Assign instance to this.
 	instance = this;
 
@@ -55,6 +63,7 @@ int BafIOServer::getReturnValue()
 
 bool BafIOServer::startNetworkThread()
 {
+	cout << "Starting network thread" << endl;
 	this->networkThread.launch();
 	return true;
 }
@@ -62,13 +71,15 @@ bool BafIOServer::startNetworkThread()
 void BafIOServer::mainLoop()
 {
 	BafIOEvent event = this->popEvent();
+	cout << "BafIOEvent: " << "EventType: " << event.getEventType() << endl;
 }
 
 void BafIOServer::networkLoop()
 {
 	while (this->running)
 	{
-		BafIOEvent event;
+		BafIOEvent event(1);
 		this->pushEvent(event);
+		cout << "Adding event type" << endl;
 	}
 }

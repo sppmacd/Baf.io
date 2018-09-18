@@ -14,6 +14,9 @@ class BafIOEvent
 	static map<EventType, BafIOEventHandlerFunc> eventHandlers;
 
 public:
+	// Constructor
+	BafIOEvent(EventType type = 0);
+
 	// Adds the Event Handler to registry.
 	static void registerEventHandler(EventType type, BafIOEventHandlerFunc func);
 

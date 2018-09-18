@@ -2,6 +2,12 @@
 
 map<EventType, BafIOEventHandlerFunc> BafIOEvent::eventHandlers;
 
+BafIOEvent::BafIOEvent(EventType type)
+{
+	eventType = type; //Empty event
+	eventArgs.clear();
+}
+
 void BafIOEvent::registerEventHandler(EventType type, BafIOEventHandlerFunc func)
 {
 	eventHandlers.insert(make_pair(type, func));
