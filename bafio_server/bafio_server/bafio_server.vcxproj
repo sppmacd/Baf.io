@@ -21,6 +21,16 @@
   <ItemGroup>
     <None Include="CHANGELOG" />
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main\main.cpp" />
+    <ClCompile Include="server\BafIOServer.cpp" />
+    <ClCompile Include="server\network\event\BafIOEvent.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="server\BafIOServer.h" />
+    <ClInclude Include="server\network\event\BafIOEvent.h" />
+    <ClInclude Include="stdafx.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{FA9548DB-C278-488F-95D8-C1F72E5CE178}</ProjectGuid>
