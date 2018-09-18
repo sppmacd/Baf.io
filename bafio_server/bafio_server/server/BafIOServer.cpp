@@ -80,7 +80,11 @@ void BafIOServer::mainLoop()
 			break;
 
 		// Call event handler
-		BafIOEvent::getHandler(event.getEventType())(event.getArgs());
+		BafIOEventHandlerFunc func = BafIOEvent::getHandler(event.getEventType());
+		if (func != nullptr)
+			func(event);
+		else
+			BafIOEvent::defaultEventHandler(event);
 	}
 	eventMutex.unlock();
 

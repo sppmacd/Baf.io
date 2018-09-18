@@ -10,7 +10,7 @@ void World::generate()
 {
 	cout << "Generating world..." << endl;
 
-	srand(time(NULL));
+	srand(time(static_cast<time_t>(NULL)));
 	for (int i = 0; i < sqrt(this->size.x*this->size.y) / 5; i++)
 	{
 		float locX = static_cast<float>(rand() % static_cast<int>(round(this->size.x)));

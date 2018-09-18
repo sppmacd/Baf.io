@@ -2,6 +2,8 @@
 
 #include "../../stdafx.h"
 
+class World;
+
 class Entity : public Transformable
 {
 public:

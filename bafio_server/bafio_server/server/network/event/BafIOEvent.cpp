@@ -46,14 +46,7 @@ string& BafIOEvent::getArg(string name)
 // Get handler for a event type.
 BafIOEventHandlerFunc BafIOEvent::getHandler(EventType type)
 {
-	try
-	{
-		return eventHandlers[type];
-	}
-	catch(...)
-	{
-		return BafIOEvent::defaultEventHandler;
-	}
+	return eventHandlers[type];
 }
 
 map<string, string> BafIOEvent::getArgs()

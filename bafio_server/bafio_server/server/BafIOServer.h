@@ -2,6 +2,7 @@
 
 #include "../stdafx.h"
 #include "network/event/BafIOEvent.h"
+#include "world/World.h"
 
 // Base class to manage Baf.io Server
 

@@ -1,5 +1,9 @@
 #pragma once
 
+#include "../../stdafx.h"
+
+class World;
+
 class Object : public Transformable
 {
 public:
