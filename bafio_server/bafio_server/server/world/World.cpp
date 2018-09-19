@@ -61,3 +61,8 @@ void World::update()
 	for (Entity& e : entities)
 		e.update();
 }
+
+void World::leftClick(Vector2f pos)
+{
+
+}

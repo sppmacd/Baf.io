@@ -31,6 +31,9 @@ BafIOServer::BafIOServer()
 
 	// Set running flag to true.
 	running = true;
+
+	// Generate world.
+	world.generate();
 }
 
 BafIOServer::~BafIOServer()

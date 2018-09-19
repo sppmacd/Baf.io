@@ -21,4 +21,6 @@ public:
 	void addEntity(Entity& entity);
 	void addObject(Object& object);
 	void update();
+	void leftClick(Vector2f pos);
+	void rightClick(Vector2f pos);
 };
