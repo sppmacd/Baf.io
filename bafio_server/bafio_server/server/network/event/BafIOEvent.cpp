@@ -66,7 +66,7 @@ bool BafIOEvent::defaultEventHandler(BafIOEvent & event)
 }
 
 // Parse event from packet.
-BafIOEvent getFromPacket(Packet packet)
+BafIOEvent& getEventFromPacket(Packet& packet)
 {
 	EventType type;
 	packet >> type;

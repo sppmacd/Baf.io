@@ -3,6 +3,7 @@
 #include "../../stdafx.h"
 #include "Object.h"
 #include "Entity.h"
+#include "../network/event/BafIOEvent.h"
 
 // Class managing server World.
 class World : public NonCopyable
@@ -20,7 +21,10 @@ public:
 	// Adds the new entity
 	void addEntity(Entity& entity);
 	void addObject(Object& object);
+	Entity& getEntityByUUID(Uint64 uuid);
 	void update();
 	void leftClick(Vector2f pos);
 	void rightClick(Vector2f pos);
+	Uint64 getNextUUID();
+	BafIOEvent& createEntityEvent(Entity* entity);
 };

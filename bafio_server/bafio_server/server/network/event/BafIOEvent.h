@@ -50,4 +50,4 @@ public:
 	static bool defaultEventHandler(BafIOEvent& event);
 };
 
-BafIOEvent getFromPacket(Packet packet);
+BafIOEvent& getEventFromPacket(Packet& packet);

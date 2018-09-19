@@ -2,7 +2,18 @@
 
 #include "../stdafx.h"
 #include "network/event/BafIOEvent.h"
+#include "network/BafIONetworkHandler.h"
 #include "world/World.h"
+
+// Server event type
+namespace ServerEventType
+{
+	const EventType RequestUserData = 1;
+	const EventType UpdateEntity = 2;
+	const EventType UpdateObject = 3;
+	const EventType Disconnect = 4;
+	const EventType Chat = 5;
+};
 
 // Base class to manage Baf.io Server
 
@@ -22,6 +33,9 @@ class BafIOServer
 
 	// The World.
 	World world;
+
+	// The network handler - stores clients, handles connect,disconnect,packets etc.
+	BafIONetworkHandler networkHandler;
 public:
 	// Event mutex.
 	Mutex eventMutex;
@@ -61,4 +75,10 @@ public:
 
 	// Starts the network loop (full loop)
 	void networkLoop();
+
+	// Retrieves the network handler.
+	BafIONetworkHandler& getNetworkHandler();
+
+	// Retrieves the world pointer.
+	World* getWorld();
 };

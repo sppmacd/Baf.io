@@ -22,3 +22,13 @@ void Object::onUpgrade()
 void Object::onDestroy()
 {
 }
+
+Vector2f Object::getPosition()
+{
+	return this->position;
+}
+
+void Object::setPosition(Vector2f pos)
+{
+	this->position = pos;
+}

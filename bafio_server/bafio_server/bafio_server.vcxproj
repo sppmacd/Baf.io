@@ -24,6 +24,7 @@
   <ItemGroup>
     <ClCompile Include="main\main.cpp" />
     <ClCompile Include="server\BafIOServer.cpp" />
+    <ClCompile Include="server\network\BafIONetworkHandler.cpp" />
     <ClCompile Include="server\network\event\BafIOEvent.cpp" />
     <ClCompile Include="server\world\Entity.cpp" />
     <ClCompile Include="server\world\Object.cpp" />
@@ -31,6 +32,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="server\BafIOServer.h" />
+    <ClInclude Include="server\network\BafIONetworkHandler.h" />
     <ClInclude Include="server\network\event\BafIOEvent.h" />
     <ClInclude Include="server\world\Entity.h" />
     <ClInclude Include="server\world\Object.h" />

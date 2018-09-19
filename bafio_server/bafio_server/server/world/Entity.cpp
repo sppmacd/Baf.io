@@ -18,3 +18,13 @@ void Entity::onCreate()
 void Entity::onDeath()
 {
 }
+
+Vector2f Entity::getPosition()
+{
+	return this->position;
+}
+
+void Entity::setPosition(Vector2f pos)
+{
+	position = pos;
+}

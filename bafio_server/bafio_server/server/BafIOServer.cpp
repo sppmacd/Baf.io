@@ -4,7 +4,6 @@ BafIOServer* BafIOServer::instance;
 
 void BafIOServer::pushEvent(BafIOEvent & event)
 {
-	Lock lock(eventMutex);
 	clientEvents.push_back(event);
 }
 
@@ -99,7 +98,16 @@ void BafIOServer::networkLoop()
 {
 	while (this->running)
 	{
-		BafIOEvent event(1);
-		this->pushEvent(event);
+		this->getNetworkHandler().loop();
 	}
+}
+
+BafIONetworkHandler & BafIOServer::getNetworkHandler()
+{
+	return this->networkHandler;
+}
+
+World * BafIOServer::getWorld()
+{
+	return &this->world;
 }
